@@ -20,4 +20,5 @@ E.g. If you wanted to change from `python 3.7.9` to `python 3.5.6` you would jus
 + FROM python:3.5-slim-stretch
 ```
 
-Then push your changes to a branch on the `beBit` repo and then your branch name is served as an image tag. e.g. Your branch name `python_mecab_python-3.5.6` will be written as `bebit/python-mecab-builder:python_mecab_python-3.5.6` in your `DOCKERFILE`
+## Releasing
+- To release a new docker image, publish a new tag which will trigger Github Action to build and push a new docker image to `ghcr.io/bebit/python-mecab-builder:<tag>`
