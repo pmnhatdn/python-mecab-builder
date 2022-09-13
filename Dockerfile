@@ -1,4 +1,3 @@
-
 FROM python:3.7-slim-buster
 RUN apt-get update > /dev/null && apt-get install -y --no-install-recommends \
     build-essential=12.6 \
