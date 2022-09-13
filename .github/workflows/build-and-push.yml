@@ -2,13 +2,6 @@ name: Create and publish a Docker image
 
 on:
   pull_request:
-    paths:
-      - Dockerfile
-    types:
-      - opened # default
-      - synchronize # default
-      - reopened # default
-      - ready_for_review # draft -> ready
   release:
     types: [published]
 
