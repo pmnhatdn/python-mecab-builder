@@ -2,13 +2,19 @@ name: Create and publish a Docker image
 
 on:
   pull_request:
+    paths:
+      - Dockerfile
+    types:
+      - opened # default
+      - synchronize # default
+      - reopened # default
+      - ready_for_review # draft -> ready
   release:
     types: [published]
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME_RELEASE: ${{ github.repository }}
-  IMAGE_NAME_DEV: ${{ github.repository }}-dev
+  IMAGE_NAME: "${{ github.event_name == 'release' && 'python-mecab-builder' || 'python-mecab-builder-dev' }}"
 
 jobs:
   build-and-push-image:
@@ -16,9 +22,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    env:
-      IMAGE_NAME: "${{ github.event_name == 'release' && $IMAGE_NAME_RELEASE || $IMAGE_NAME_DEV }}"
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
